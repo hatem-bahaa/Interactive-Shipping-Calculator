@@ -1,0 +1,48 @@
+# Project: Interactive Shipping Calculator
+
+# Stack: React, TypeScript, MUI, React Hook Form, Zod, Vite
+
+## Code Style
+
+- Always use TypeScript, never use `any`
+- Always use named exports, never default exports for components
+- Always use arrow functions for components
+- File names must match component names exactly
+
+## MUI Rules
+
+- Never use inline styles or plain CSS
+- Always use `sx` prop for one-off styles
+- Always use `styled()` for reusable styled components
+- Always pull values from theme (colors, spacing, typography)
+- Never hardcode hex colors or pixel values
+
+## React Hook Form Rules
+
+- Always use `Controller` for MUI inputs
+- Never use `watch()` on all fields - only watch specific fields
+- Always validate with Zod schemas
+
+## Folder Structure
+
+- Features go in src/routes/<feature-name>/
+- Each feature has: components/, hooks/, types/, schemas/
+- Each feature must have an index.ts as its public API
+- Never import from deep inside another feature
+- Always import from feature's index.ts
+- Shared components goes in src/components/
+- Context goes in src/context/<context-name>
+- App-level setup goes in src/app/
+
+## Component Rules
+
+- Every component must have a TypeScript interface for its props
+- Every component file must have its own types at the top
+
+## Naming Conventions
+
+- Components: PascalCase (CourierCard.tsx)
+- Hooks: camelCase with "use" prefix (useQuote.ts)
+- Context: PascalCase with "Context" suffix (QuoteContext.tsx)
+- Schemas: camelCase with "Schema" suffix (shippingSchema.ts)
+- Types: PascalCase with "Type" suffix (CourierType.ts)
