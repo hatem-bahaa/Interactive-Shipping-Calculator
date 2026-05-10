@@ -28,8 +28,8 @@
 - Features go in src/routes/<feature-name>/
 - Each feature has: components/, hooks/, types/, schemas/
 - Each feature must have an index.ts as its public API
-- Never import from deep inside another feature
-- Always import from feature's index.ts
+- Never import from deep inside another folder or feature
+- Always import from the nearest index.ts public API
 - Shared components goes in src/components/
 - Context goes in src/context/<context-name>
 - App-level setup goes in src/app/

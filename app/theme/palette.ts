@@ -1,24 +1,40 @@
 import type { PaletteOptions } from '@mui/material/styles'
 
-/**
- * Color palette inspired by Fincart's brand identity:
- * a vibrant coral-orange primary paired with a deep navy secondary,
- * on clean off-white surfaces.
- */
 export const palette: PaletteOptions = {
   mode: 'light',
 
   primary: {
-    main: '#FF5A1F',
+    main: '#0063F9',
     light: '#FF8A65',
-    dark: '#C73E0E',
+    dark: '#0E1B3D',
     contrastText: '#FFFFFF',
   },
 
   secondary: {
-    main: '#0E1B3D',
+    main: '#0063F9',
     light: '#334B7A',
     dark: '#050B1F',
+    contrastText: '#FFFFFF',
+  },
+
+  blue: {
+    main: '#0063F9',
+    light: '#E5EFFE',
+    dark: '#0063F9',
+    contrastText: '#FFFFFF',
+  },
+
+  yellow: {
+    main: '#F9B302',
+    light: '#FEF7E5',
+    dark: '#F59E0B',
+    contrastText: '#FFFFFF',
+  },
+
+  green: {
+    main: '#18CF99',
+    light: '#E8FAF5',
+    dark: '#16A34A',
     contrastText: '#FFFFFF',
   },
 
@@ -33,7 +49,7 @@ export const palette: PaletteOptions = {
     main: '#F59E0B',
     light: '#FBBF24',
     dark: '#B45309',
-    contrastText: '#0E1B3D',
+    contrastText: '#FFFFFF',
   },
 
   error: {
@@ -52,11 +68,11 @@ export const palette: PaletteOptions = {
 
   background: {
     default: '#FFFFFF',
-    paper: '#F8FAFC',
+    paper: '#f5f5f5',
   },
 
   text: {
-    primary: '#0E1B3D',
+    primary: '#2A262A',
     secondary: '#475569',
     disabled: '#94A3B8',
   },

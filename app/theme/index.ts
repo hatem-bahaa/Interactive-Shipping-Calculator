@@ -2,22 +2,15 @@ import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 
 import { components } from './components'
 import { palette } from './palette'
-import { radii, shape, type Radii } from './shape'
+import { radii, shape } from './shape'
 import { typography } from './typography'
-
-declare module '@mui/material/styles' {
-  interface Theme {
-    radii: Radii
-  }
-  interface ThemeOptions {
-    radii?: Radii
-  }
-}
+import { customLayouts } from './customLayouts'
 
 const baseTheme = createTheme({
   cssVariables: true,
   palette,
   typography,
+  customLayouts,
   shape,
   radii,
   components,

@@ -1,87 +1,60 @@
-# Welcome to React Router!
+# Interactive Shipping Calculator
 
-A modern, production-ready template for building full-stack React applications using React Router.
+A React Router app for comparing courier quotes from shipment details.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## What It Does
 
-## Features
+Users enter origin address, destination address, and package dimensions through a multi-step form. The app validates the shipment details, keeps a live summary beside the form, then shows matching courier quotes with prices and delivery estimates.
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+## Tech Stack
 
-## Getting Started
+- React Router
+- React
+- TypeScript
+- Material UI
+- React Hook Form
+- Zod
+- Storybook
+- ESLint
 
-### Installation
-
-Install the dependencies:
-
-```bash
-npm install
-```
-
-### Development
-
-Start the development server with HMR:
+## Scripts
 
 ```bash
 npm run dev
-```
-
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
-
-```bash
 npm run build
+npm run typecheck
+npm run lint
+npm run storybook
 ```
 
-## Deployment
+## Instructions
 
-### Docker Deployment
+- To see empty state of couriers page go to [`useQuotes.ts`](./app/routes/couriers-quotes/hooks/useQuotes.ts):
+  - comment `setQuotes(result.data)`
+  - uncomment `setQuotes([])`
 
-To build and run using Docker:
+## Questions
 
-```bash
-docker build -t my-app .
+### Q1: How would you handle an API error, for example if the DHL rate service is down?
 
-# Run the container
-docker run -p 3000:3000 my-app
-```
+Since the backend handles all courier API communication, the frontend should focus on presenting backend failures clearly and keeping the user in control.
 
-The containerized application can be deployed to any platform that supports Docker, including:
+- Show a clear error state with a retry button if the full quotes request fails.
+- Use timeouts and retry logic on the backend for temporary courier outages, ideally with exponential backoff.
+- Support partial results when possible. If DHL fails but other couriers succeed, the UI should still show the successful courier cards and mark DHL as unavailable.
+- Do not assume a `200` response means everything succeeded. With GraphQL, for example, the response can include both `data` and `errors`, so the UI should inspect both.
+- Keep each courier card independent. A failed courier should not block the rest of the available courier options.
+- Treat quoting and booking as separate operations. A successful quote does not guarantee a successful booking.
+- If booking fails, keep the user on the results page, preserve the shipment details, and allow them to choose another courier without filling the form again.
+- Show actionable error messages when available, such as package weight limits, unsupported destination, or service temporarily unavailable.
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
+### Q2: How would you optimize bundle size for slow 3G connections in emerging markets?
 
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+- Apply route-based code splitting. React Router does this automatically, so instead of one big `bundle.js` file, there are multiple chunks served only when requested.
+- Lazy-load non-critical UI, like charts, maps, or heavy modals.
+- Use manual chunks in the build config for big libraries and packages. This helps caching because these packages do not change much, unlike the app code itself.
+- Use lightweight image formats like WebP and SVG icons.
+- Avoid unnecessary packages that bloat the bundle size. Keep `package.json` clean and replace heavy packages with lighter alternatives when possible.
+- Enable tree shaking in the bundling tool, which helps remove unused code that is not imported.
+- Avoid importing entire libraries. Importing only what is needed helps tree shaking work well.
+- Self-host app fonts and using only variations needed.

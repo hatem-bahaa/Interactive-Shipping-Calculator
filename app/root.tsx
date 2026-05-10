@@ -9,45 +9,40 @@ import {
 import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider } from '@mui/material/styles'
 
+import { ShippingFormProvider } from '~/context/ShippingFormContext'
+
 import type { Route } from './+types/root'
 import { theme } from './theme'
 import './app.css'
 
-export const links: Route.LinksFunction = () => [
-  {
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap',
-  },
-]
+export const Layout = ({ children }: { children: React.ReactNode }) => (
+  <html lang='en'>
+    <head>
+      <meta charSet='utf-8' />
+      <meta name='viewport' content='width=device-width, initial-scale=1' />
+      <Meta />
+      <Links />
+    </head>
+    <body>
+      {children}
+      <ScrollRestoration />
+      <Scripts />
+    </body>
+  </html>
+)
 
-export function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang='en'>
-      <head>
-        <meta charSet='utf-8' />
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        {children}
-        <ScrollRestoration />
-        <Scripts />
-      </body>
-    </html>
-  )
-}
-
-export default function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <ShippingFormProvider>
       <Outlet />
-    </ThemeProvider>
-  )
-}
+    </ShippingFormProvider>
+  </ThemeProvider>
+)
 
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+export default App
+
+export const ErrorBoundary = ({ error }: Route.ErrorBoundaryProps) => {
   let message = 'Oops!'
   let details = 'An unexpected error occurred.'
   let stack: string | undefined

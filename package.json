@@ -2,32 +2,57 @@
   "name": "Interactive Shipping Calculator",
   "private": true,
   "type": "module",
+  "imports": {
+    "#hooks/useQuotes": {
+      "storybook": "./app/routes/couriers-quotes/hooks/useQuotes.mock.ts",
+      "default": "./app/routes/couriers-quotes/hooks/useQuotes.ts"
+    }
+  },
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc"
+    "typecheck": "react-router typegen && tsc",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@fontsource/poppins": "^5.2.7",
     "@hookform/resolvers": "^5.2.2",
+    "@mui/icons-material": "^9.0.1",
     "@mui/material": "^9.0.1",
     "@react-router/node": "7.15.0",
     "@react-router/serve": "7.15.0",
-    "isbot": "^5.1.36",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-hook-form": "^7.75.0",
     "react-router": "7.15.0",
-    "zod": "^4.4.3"
+    "zod": "^4.4.3",
+    "isbot": "^5"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.4",
     "@react-router/dev": "7.15.0",
+    "@storybook/addon-a11y": "^10.3.6",
+    "@storybook/addon-docs": "^10.3.6",
+    "@storybook/react-vite": "^10.3.6",
     "@types/node": "^22",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.4",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-storybook": "^10.3.6",
+    "globals": "^15.15.0",
+    "storybook": "^10.3.6",
+    "storybook-addon-remix-react-router": "^6.1.0",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.59.2",
     "vite": "^8.0.3"
   }
 }
